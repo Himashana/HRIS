@@ -159,6 +159,7 @@ import { HolidayCalendarComponent } from './shared/components/holiday-calendar/h
 import { HolidayDialogComponent } from './shared/dialogs/holiday-dialog/holiday-dialog.component';
 import { HolidayAddComponent } from './shared/dialogs/holiday-add/holiday-add.component';
 import { DecryptDataComponent } from './temp/decrypt-data/decrypt-data.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -264,7 +265,8 @@ import { DecryptDataComponent } from './temp/decrypt-data/decrypt-data.component
     HolidayCalendarComponent,
     HolidayDialogComponent,
     HolidayAddComponent,
-    DecryptDataComponent
+    DecryptDataComponent,
+    UserSettingsComponent
   ],
     imports: [
         BrowserModule,

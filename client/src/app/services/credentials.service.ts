@@ -18,4 +18,8 @@ export class CredentialsService {
   public resetPassword(id: any): Observable<any> {
     return this.http.put(this.baseUrl+'credentials/reset/'+id,{});
   }
+
+  public changePassword(email: any, data: any): Observable<any> {
+    return this.http.put(this.baseUrl+'credentials/update/password/'+email,data);
+  }
 }

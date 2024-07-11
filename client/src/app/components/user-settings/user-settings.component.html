@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="card">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="d-flex align-items-center justify-content-start">
+          <h5 class="py-2">User Settings</h5>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <h6>Account Settings</h6>
+        <div class="h6-supporter"></div>
+
+        <div class="row my-2">
+          <div class="col-12">
+            <button class="btn-1 px-2" [routerLink]="'/profile/'+userId+'/edit/'+userId">
+              <i class="fa-solid fa-pen"></i>
+              &nbsp;&nbsp;Edit Profile
+            </button>
+          </div>
+        </div>
+
+        <h6>Change Password</h6>
+        <div class="h6-supporter"></div>
+
+        <div class="row my-2">
+          <form [formGroup]="changePasswordForm">
+            <div class="col-12 col-md-6">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Current Password</mat-label>
+                <input matInput id="old" formControlName="old" placeholder="Enter your current password" [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="changePasswordForm.controls['old'].hasError('required')">
+                  Current password is required
+                </mat-error>
+                <mat-error *ngIf="changePasswordForm.controls['old'].hasError('minlength')">
+                  Password must be at least 6 characters
+                </mat-error>
+                <mat-error *ngIf="changePasswordForm.controls['old'].hasError('mismatch')">
+                  Current password doesn't match
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>New Password</mat-label>
+                <input matInput id="newPass" formControlName="newPass" placeholder="Enter your new password" [type]="newHide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="newHide = !newHide">{{newHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="changePasswordForm.controls['newPass'].hasError('required')">
+                  New password is required
+                </mat-error>
+                <mat-error *ngIf="changePasswordForm.controls['newPass'].hasError('minlength')">
+                  Password must be at least 6 characters
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Confirm New Password</mat-label>
+                <input matInput id="confirm" formControlName="confirm" placeholder="Enter your new password again" [type]="currentHide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="currentHide = !currentHide">{{currentHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="changePasswordForm.controls['confirm'].hasError('required')">
+                  Confirm password is required
+                </mat-error>
+                <mat-error *ngIf="changePasswordForm.controls['confirm'].hasError('minlength')">
+                  Password must be at least 6 characters
+                </mat-error>
+                <mat-error *ngIf="changePasswordForm.controls['confirm'].hasError('mismatch')">
+                  Passwords do not match
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="d-flex align-items-center justify-content-end">
+                <button class="btn-3 px-3 py-2" (click)="clearForm()">Cancel</button>
+                <button class="btn-1 px-3 py-2" [disabled]="changePasswordForm.invalid" (click)="submitChangePassword()">
+                  Update Password
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </li>
+      <li class="list-group-item">
+
+      </li>
+    </ul>
+  </div>
+</div>

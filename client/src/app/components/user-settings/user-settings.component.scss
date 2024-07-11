@@ -1,0 +1,29 @@
+.card{
+  .list-group{
+    background-color: var(--color-surface-mixed-200);
+    .list-group-item{
+      background-color: var(--color-surface-mixed-200);
+
+      h6{
+        font-size: 17px;
+      }
+      .h6-supporter{
+        width: 100%;
+        height: 1px;
+        background-color: var(--color-surface-600);
+      }
+
+      .title-label{
+        color: var(--color-text-300);
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.btn-1{
+  &:disabled{
+    color: var(--color-text-300);
+    background-color: var(--color-surface-mixed-600);
+  }
+}

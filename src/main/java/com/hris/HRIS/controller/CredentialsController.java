@@ -3,6 +3,7 @@ package com.hris.HRIS.controller;
 import com.hris.HRIS.dto.ApiResponse;
 import com.hris.HRIS.model.CredentialsModel;
 import com.hris.HRIS.repository.CredentialsRepository;
+import com.hris.HRIS.service.EncryptionService;
 import com.hris.HRIS.service.SystemAutomateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class CredentialsController {
 
     @Autowired
     SystemAutomateService systemAutomateService;
+
+    @Autowired
+    EncryptionService encryptionService;
 
     @PostMapping("/save")
     public ResponseEntity<ApiResponse> saveCredentials(@RequestBody CredentialsModel credentialsModel) {
@@ -50,12 +54,14 @@ public class CredentialsController {
     }
 
     @PutMapping("/update/password/{email}")
-    public ResponseEntity<ApiResponse> updateCredentialsByEmail(@PathVariable String email, @RequestBody CredentialsModel credentialsModel) {
+    public ResponseEntity<ApiResponse> updateCredentialsByEmail(@PathVariable String email, @RequestBody CredentialsModel credentialsModel) throws Exception {
         Optional<CredentialsModel> credentialsModelOptional = credentialsRepository.findByEmail(email);
 
         if (credentialsModelOptional.isPresent()) {
             CredentialsModel existingCredentials = credentialsModelOptional.get();
-            existingCredentials.setPassword(credentialsModel.getPassword());
+
+            String encryptedPassword = encryptionService.encryptPassword(credentialsModel.getPassword());
+            existingCredentials.setPassword(encryptedPassword);
 
             credentialsRepository.save(existingCredentials);
         }

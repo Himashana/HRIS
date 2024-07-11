@@ -80,6 +80,7 @@ import {DashboardConfigComponent} from "./components/Dashboards/dashboard-config
 import {ConfigGuard} from "./guards/config.guard";
 import {HolidayCalendarComponent} from "./shared/components/holiday-calendar/holiday-calendar.component";
 import {DecryptDataComponent} from "./temp/decrypt-data/decrypt-data.component";
+import {UserSettingsComponent} from "./components/user-settings/user-settings.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -175,6 +176,7 @@ const routes: Routes = [
     {path: 'onboarding', component: DashboardOnboardinMainComponent, canActivate: [AuthGuard, AdminGuard]},
   ]},
   {path: 'config', component: DashboardConfigComponent, canActivate: [AuthGuard, ConfigGuard]},
+  {path: 'settings', component: UserSettingsComponent},
   {path: 'temp', component: DecryptDataComponent},
   {path: '403', component: ForbiddenComponent},
   {path: '**', component: NotFoundComponent},
