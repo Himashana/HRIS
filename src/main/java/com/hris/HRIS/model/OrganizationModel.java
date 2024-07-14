@@ -29,6 +29,9 @@ public class OrganizationModel {
     @Field("employees")
     private List<EmployeeModel> employees;
     private String description;
+    private String contractStart;
+    private String contractEnd;
+    private String status;
     private byte[] photo;
     private int annualLeave;
     private int sickLeave;
